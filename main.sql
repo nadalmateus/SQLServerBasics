@@ -1,19 +1,40 @@
-CREATE DATABASE [Curso]
-USE [Curso]
+CREATE DATABASE [SQL]
 
-DROP TABLE [Aluno]
+CREATE TABLE [Student] (
+    [Id] UNIQUEIDENTIFIER NOT NULL,
+    [Name] NVARCHAR(120) NOT NULL,
+    [Email] NVARCHAR(180) NOT NULL,
+    [Documment] NVARCHAR(20) NULL,
+    [Phone] NVARCHAR(20) NULL,
+    [Birthdate] DATETIME NULL,
+    [CreateDate] DATETIME NOT NULL,
+    CONSTRAINT [PK_Student] PRIMARY KEY ([Id])
+)
+GO
 
-CREATE TABLE [Aluno]
-(
-    [Id] INT NOT NULL,
-    [Nome] NVARCHAR(80) NOT NULL,
-    [Email] NVARCHAR(80) NOT NULL,
-    [Nascimento] DATETIME NULL,
-    [Ativo] BIT DEFAULT (0)
+CREATE TABLE [Author] (
+    [Id] UNIQUEIDENTIFIER NOT NULL,
+    [Name] NVARCHAR(80) NOT NULL,
+    [Title] NVARCHAR(80) NOT NULL,
+    [Image] NVARCHAR(1024) NULL,
+    [Bio] NVARCHAR(2000) NULL,
+    [Url] NVARCHAR(1024) NULL,
+    [Email] NVARCHAR(180) NOT NULL,
+    [Type] TINYINT NOT NULL,
+    CONSTRAINT [PK_Author] PRIMARY KEY ([Id])
+)
+GO
 
-        CONSTRAINT [PK_Aluno]  PRIMARY KEY([Id]),
-    CONSTRAINT [UQ_Aluno_Email]  UNIQUE([Email]),
-
+CREATE TABLE [Career] (
+    [Id] UNIQUEIDENTIFIER NOT NULL,
+    [Title] NVARCHAR(80) NOT NULL,
+    [Summary] NVARCHAR(2000) NOT NULL,
+    [Url] NVARCHAR(1024) NULL,
+    [DurationInMinutes] INT NOT NULL,
+    [Active] BIT NOT NULL,
+    [Featured] BIT NOT NULL,
+    [Tags] NVARCHAR(160) NOT NULL,
+    CONSTRAINT [PK_Career] PRIMARY KEY ([Id])
 )
 GO
 
