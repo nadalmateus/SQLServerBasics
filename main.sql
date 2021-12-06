@@ -1,4 +1,5 @@
 CREATE DATABASE [SQL]
+USE [SQL]
 
 CREATE TABLE [Student] (
     [Id] UNIQUEIDENTIFIER NOT NULL,
@@ -86,15 +87,14 @@ CREATE TABLE [CareerItem] (
 GO
 
 CREATE TABLE [StudentCourse] (
-    [Id] UNIQUEIDENTIFIER NOT NULL,
-    [CourseId] UNIQUEIDENTIFIER NULL,
+    [CourseId] UNIQUEIDENTIFIER NOT NULL,
+    [StudentId] UNIQUEIDENTIFIER NOT NULL,
     [Progress] TINYINT NOT NULL,
     [Favorite] BIT NOT NULL,
-    [StudentId] UNIQUEIDENTIFIER NULL,
     [StartDate] DATETIME NOT NULL,
     [LastUpdateDate] DATETIME NULL,
-    CONSTRAINT [PK_StudentCourse] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_StudentCourse_Course_CourseId] FOREIGN key ([CourseId]) REFERENCES [Course] ([Id]) ON DELETE NO ACTION,
-    CONSTRAINT [FK_StudentCourse_Student_StudentId] FOREIGN key ([StudentId]) REFERENCES [Student] ([Id]) ON DELETE NO ACTION,
+    CONSTRAINT [PK_StudentCourse] PRIMARY KEY ([CourseId], [StudentId]),
+    CONSTRAINT [FK_StudentCourse_Course_CourseId] FOREIGN key ([CourseId]) REFERENCES [Course] ([Id]),
+    CONSTRAINT [FK_StudentCourse_Student_StudentId] FOREIGN key ([StudentId]) REFERENCES [Student] ([Id]),
 )
 GO
